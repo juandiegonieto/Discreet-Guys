@@ -1,6 +1,7 @@
 package model;
 
 public class Floor {
+	
 	private Office[] offices;
 
 	public Floor(int offices) {
