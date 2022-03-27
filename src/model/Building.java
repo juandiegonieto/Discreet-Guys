@@ -13,6 +13,7 @@ public class Building <T>{
 		this.persons = new Person[persons];
 		this.id = id;
 		this.officeQuantity = office;
+		createArrayOffice();
 	}
 
 
@@ -55,6 +56,19 @@ public class Building <T>{
 		this.officeQuantity = officeQuantity;
 	}
 	
-	
+	public void createArrayOffice(){
+		int k=0;
+		for(int i =floors.length-1; i>=0;i--) {
+			floors[i]=new Floor(i+1,officeQuantity);
+			System.out.print("En el piso "+(i+1)+"hay ");
+			for(int j=0;j<officeQuantity;j++) {
+				k++;
+				floors[i].addOffice(k);
+				System.out.print(floors[i].toString()+ "oficinas\n");
+			}
+			
+		}
+		
+	}	
 	
 }
