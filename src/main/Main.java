@@ -24,6 +24,16 @@ public class Main {
 		
 	}
 	
+	public static void menu1() {
+		System.out.println("****************************************");
+		System.out.println("*********Descreet Guys Elevator*********");
+		System.out.println("****************************************");
+		System.out.println("-Welcome to the elevator");
+		System.out.println("-To continue, write the number of buildings: ");
+		int numOfBuildings = sc.nextInt();
+		
+	}
+	
 	public static void create() {
 		String info = sc.nextLine();
 		String[] infoArray = info.split(" ");

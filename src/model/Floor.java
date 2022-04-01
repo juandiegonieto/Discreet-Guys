@@ -37,8 +37,10 @@ public class Floor {
 	
 	public String toString() {
 		String out ="";
-		for(Office f : offices)
-		out = f.getNum()+"";
+		for(Office f : offices) {
+		if(f!=null)
+			out = f.getNum()+"";
+		}
 		return out;
 	}
 	

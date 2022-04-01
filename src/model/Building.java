@@ -60,11 +60,9 @@ public class Building <T>{
 		int k=0;
 		for(int i =floors.length-1; i>=0;i--) {
 			floors[i]=new Floor(i+1,officeQuantity);
-			System.out.print("En el piso "+(i+1)+"hay ");
 			for(int j=0;j<officeQuantity;j++) {
 				k++;
 				floors[i].addOffice(k);
-				System.out.print(floors[i].toString()+ "oficinas\n");
 			}
 			
 		}
