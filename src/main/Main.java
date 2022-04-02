@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Hashtable;
 import java.util.Scanner;
 
 import model.Building;
@@ -10,11 +11,11 @@ public class Main {
 	static Building[] buildings;
 	static Scanner sc = new Scanner(System.in);
 	
-	public static void main(String[] args) {
+	public static <V, K>void main(String[] args){
 		ask();
 	}
 	
-	public static void ask() {
+	public static  void ask() {
 		int numberOfBuildings = sc.nextInt();
 		sc.nextLine();
 		buildings = new Building[numberOfBuildings];
@@ -48,6 +49,16 @@ public class Main {
 				buildings[i]=b;
 			}
 		}
+	}
+	
+	public static <V, K> Hashtable<K,V> rute(int buil){
+		Hashtable<K,V> out =  new Hashtable<>();
+		int persons = buildings[buil].getPersons().length-1;
+		int floor = 1;
+		for (int i=0;i<persons;i++ ) {
+			
+		}
+		return out;
 	}
 	
 
