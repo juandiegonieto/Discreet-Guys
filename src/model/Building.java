@@ -6,6 +6,7 @@ public class Building <T>{
 	private Person[] persons;
 	private T id;
 	private int officeQuantity;
+	private int floorsQuantity;
 	
 	
 	public Building( T id,int persons, int floors,int office ) {
@@ -13,7 +14,18 @@ public class Building <T>{
 		this.persons = new Person[persons];
 		this.id = id;
 		this.officeQuantity = office;
+		this.floorsQuantity=floors;
 		createArrayOffice();
+	}
+
+
+	public int getFloorsQuantity() {
+		return floorsQuantity;
+	}
+
+
+	public void setFloorsQuantity(int floorsQuantity) {
+		this.floorsQuantity = floorsQuantity;
 	}
 
 
