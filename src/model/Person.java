@@ -38,16 +38,33 @@ public class Person implements Comparable<Person>{
 	
 	public boolean calculateDirection(int officesQuantity,int floorsQuantity) {
 		boolean out = false;
+		int offices = officesQuantity;
 		for(int i =1 ;i<=floorsQuantity;i++) {
-			if(destinyFloor<=officesQuantity) {
-				if(i-actualFloor>0) {
+			if(destinyFloor<=offices) {
+				if(i-actualFloor<0) {
 					out=true;
+					break;
 				}
 			}
+			offices+=officesQuantity;
 		}
 		
 		return out;
 		
+	}
+	
+	public int destinyFloor(int officesQuantity,int floorsQuantity) {
+		int out = 0;
+		int offices = officesQuantity;
+		for(int i =floorsQuantity; i>=1;i--) {
+			if(destinyFloor<=offices) {
+				out=i;
+			}
+			offices+=officesQuantity;
+		}
+		
+		
+		return out;
 	}
 
 	@Override

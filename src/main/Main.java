@@ -116,17 +116,27 @@ public class Main {
 	public static <V> Queue <V> rute(int buil){
 		Queue <V> out =  new LinkedList<V>();
 		ArrayList<Person> persons = buildings[buil].getPersons();
-		boolean chekin = true;
-		boolean direction=true;
+		boolean direction= persons.get(0).calculateDirection( officesQuantity, floorsQuantity);
 		int actualFloor=1;
-		for(int i = 0 ; i<persons.size();i++) {
-			if(chekin=true) {
-				direction = persons.get(i).calculateDirection( officesQuantity, floorsQuantity);
-				chekin = false;
+		while(!persons.isEmpty()) {
+			int it = persons.size();
+
+			for(int i=0;i<persons.size();i++) {
+				if(persons.get(i).calculateDirection( officesQuantity, floorsQuantity)==direction) {
+					if(persons.get(i).destinyFloor(officesQuantity, floorsQuantity)==actualFloor) {
+						persons.remove(i);
+						out.add((V) persons.get(i));	
+					}
+				}else {
+					if(direction) {
+						actualFloor++;	
+					}else {
+						actualFloor--;
+					}
+				}
 			}
-			if(direction) {
-				actualFloor++;
-			}
+			
+			direction= persons.get(0).calculateDirection( officesQuantity, floorsQuantity);
 		}
 		
 		return out;
