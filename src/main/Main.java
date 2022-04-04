@@ -134,18 +134,10 @@ public class Main {
 						persons.remove(i);
 						break;
 					}
-					if(persons.get(i).destinyFloor(officesQuantity, floorsQuantity)==actualFloor) {
+					if(n==actualFloor) {
 						out.add((V) persons.get(i));
 						persons.remove(i);
 						break;
-					}else {
-						for(int j=i;j<persons.size();j++) {
-							if(persons.get(j).destinyFloor(officesQuantity, floorsQuantity)==actualFloor&&persons.get(j).calculateDirection( officesQuantity, floorsQuantity)==direction){
-								out.add((V) persons.get(j));
-								persons.remove(j);
-								break;
-							}
-						}
 					}
 				}
 				
