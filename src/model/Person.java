@@ -1,6 +1,6 @@
 package model;
 
-public class Person {
+public class Person implements Comparable<Person>{
 	
 	private String name;
 	private int actualFloor;
@@ -36,6 +36,28 @@ public class Person {
 		this.destinyFloor = destinyFloor;
 	}
 	
+	public boolean calculateDirection(int officesQuantity,int floorsQuantity) {
+		boolean out = false;
+		for(int i =1 ;i<=floorsQuantity;i++) {
+			if(destinyFloor<=officesQuantity) {
+				if(i-actualFloor>0) {
+					out=true;
+				}
+			}
+		}
+		
+		return out;
+		
+	}
+
+	@Override
+	public int compareTo(Person o) {
+		Person a=this;
+		Person b= o;
+		
+		int output = a.getActualFloor()-b.getActualFloor();
 	
+		return output;
+	}
 	
 }

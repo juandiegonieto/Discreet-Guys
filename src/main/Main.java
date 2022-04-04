@@ -14,6 +14,8 @@ public class Main {
 	static Building[] buildings;
 	static Scanner sc = new Scanner(System.in);
 	static int numberOfBuildings;
+	static int officesQuantity;
+	static int floorsQuantity;
 	
 	public static void main(String[] args){
 		ask();
@@ -69,10 +71,12 @@ public class Main {
 		String[] infoArray = info.split(" ");
 		Building b = new Building(infoArray[0],Integer.parseInt(infoArray[1]),
 				Integer.parseInt(infoArray[2]),Integer.parseInt(infoArray[3]));
+		officesQuantity = Integer.parseInt(infoArray[3]);
+		floorsQuantity = Integer.parseInt(infoArray[2]);
 		for(int i=0;i<Integer.parseInt(infoArray[1]);i++) {
 			String perInfo = menu3(sc);
 			String[] perSplit = perInfo.split(" ");
-			b.getPersons()[i]= new Person(perSplit[0],Integer.parseInt(perSplit[1]),Integer.parseInt(perSplit[2]));
+			b.getPersons().add(new Person(perSplit[0],Integer.parseInt(perSplit[1]),Integer.parseInt(perSplit[2]))) ;
 		}
 		for(int i=0;i<buildings.length;i++) {
 			if(buildings[i]==null) {
@@ -111,10 +115,20 @@ public class Main {
 	
 	public static <V> Queue <V> rute(int buil){
 		Queue <V> out =  new LinkedList<V>();
-		int persons = buildings[buil].getPersons().length;
-		for (int i=0;i<persons;i++ ) {
-			out.add((V) buildings[buil].getPersons()[i]);
+		ArrayList<Person> persons = buildings[buil].getPersons();
+		boolean chekin = true;
+		boolean direction=true;
+		int actualFloor=1;
+		for(int i = 0 ; i<persons.size();i++) {
+			if(chekin=true) {
+				direction = persons.get(i).calculateDirection( officesQuantity, floorsQuantity);
+				chekin = false;
+			}
+			if(direction) {
+				actualFloor++;
+			}
 		}
+		
 		return out;
 	}
 	

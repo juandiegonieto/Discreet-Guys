@@ -1,9 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Building <T>{
 	
 	private Floor[] floors;
-	private Person[] persons;
+	private ArrayList <Person>persons;
 	private T id;
 	private int officeQuantity;
 	private int floorsQuantity;
@@ -11,7 +14,8 @@ public class Building <T>{
 	
 	public Building( T id,int persons, int floors,int office ) {
 		this.floors = new Floor[floors];
-		this.persons = new Person[persons];
+		this.persons = new ArrayList<>(persons);
+		Collections.sort(this.persons);
 		this.id = id;
 		this.officeQuantity = office;
 		this.floorsQuantity=floors;
@@ -39,12 +43,12 @@ public class Building <T>{
 	}
 
 
-	public Person[] getPersons() {
+	public ArrayList<Person> getPersons() {
 		return persons;
 	}
 
 
-	public void setPersons(Person[] persons) {
+	public void setPersons(ArrayList<Person> persons) {
 		this.persons = persons;
 	}
 
