@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -70,7 +71,7 @@ public class Main {
 		String info = menu2(sc);
 		String[] infoArray = info.split(" ");
 		Building b = new Building(infoArray[0],Integer.parseInt(infoArray[1]),
-				Integer.parseInt(infoArray[2]),Integer.parseInt(infoArray[3]));
+		Integer.parseInt(infoArray[2]),Integer.parseInt(infoArray[3]));
 		officesQuantity = Integer.parseInt(infoArray[3]);
 		floorsQuantity = Integer.parseInt(infoArray[2]);
 		for(int i=0;i<Integer.parseInt(infoArray[1]);i++) {
@@ -78,6 +79,7 @@ public class Main {
 			String[] perSplit = perInfo.split(" ");
 			b.getPersons().add(new Person(perSplit[0],Integer.parseInt(perSplit[1]),Integer.parseInt(perSplit[2]))) ;
 		}
+		
 		for(int i=0;i<buildings.length;i++) {
 			if(buildings[i]==null) {
 				buildings[i]=b;
@@ -116,27 +118,49 @@ public class Main {
 	public static <V> Queue <V> rute(int buil){
 		Queue <V> out =  new LinkedList<V>();
 		ArrayList<Person> persons = buildings[buil].getPersons();
-		boolean direction= persons.get(0).calculateDirection( officesQuantity, floorsQuantity);
+		Collections.sort(persons);
+		boolean direction;
 		int actualFloor=1;
 		while(!persons.isEmpty()) {
+			direction= persons.get(0).calculateDirection( officesQuantity, floorsQuantity);
 			int it = persons.size();
 
 			for(int i=0;i<persons.size();i++) {
+				
 				if(persons.get(i).calculateDirection( officesQuantity, floorsQuantity)==direction) {
-					if(persons.get(i).destinyFloor(officesQuantity, floorsQuantity)==actualFloor) {
+					int n = persons.get(i).destinyFloor(officesQuantity, floorsQuantity);
+					if(n==0) {
+						out.add((V) persons.get(i));
 						persons.remove(i);
-						out.add((V) persons.get(i));	
+						break;
 					}
-				}else {
-					if(direction) {
-						actualFloor++;	
+					if(persons.get(i).destinyFloor(officesQuantity, floorsQuantity)==actualFloor) {
+						out.add((V) persons.get(i));
+						persons.remove(i);
+						break;
 					}else {
-						actualFloor--;
+						for(int j=i;j<persons.size();j++) {
+							if(persons.get(j).destinyFloor(officesQuantity, floorsQuantity)==actualFloor&&persons.get(j).calculateDirection( officesQuantity, floorsQuantity)==direction){
+								out.add((V) persons.get(j));
+								persons.remove(j);
+								break;
+							}
+						}
 					}
 				}
+				
+					if(direction) {
+						actualFloor++;
+						break;
+					}else {
+						actualFloor--;
+						break;
+					}
+				
+				
 			}
 			
-			direction= persons.get(0).calculateDirection( officesQuantity, floorsQuantity);
+
 		}
 		
 		return out;

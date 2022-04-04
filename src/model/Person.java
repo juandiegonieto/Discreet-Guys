@@ -41,7 +41,7 @@ public class Person implements Comparable<Person>{
 		int offices = officesQuantity;
 		for(int i =1 ;i<=floorsQuantity;i++) {
 			if(destinyFloor<=offices) {
-				if(i-actualFloor<0) {
+				if(i-actualFloor>0) {
 					out=true;
 					break;
 				}
@@ -59,11 +59,14 @@ public class Person implements Comparable<Person>{
 		for(int i =floorsQuantity; i>=1;i--) {
 			if(destinyFloor<=offices) {
 				out=i;
+				break;
 			}
 			offices+=officesQuantity;
 		}
 		
-		
+		if(out==actualFloor) {
+			out=0;
+		}
 		return out;
 	}
 
