@@ -20,16 +20,12 @@ public class Main {
 	}
 	
 	public static  <V>void ask() {
-		 numberOfBuildings = sc.nextInt();
-		sc.nextLine();
+		int numberOfBuildings = menu1(sc);
 		buildings = new Building[numberOfBuildings];
 		for(int i = 0; i<numberOfBuildings;i++) {
 			create();
-		}
-		
+		}	
 	}
-	
-
 	
 	private static void print(ArrayList<String> arr) {
 		String out = "";
@@ -39,22 +35,42 @@ public class Main {
 		
 	}
 
-	public static void menu1() {
+	public static int menu1(Scanner sc) {
 		System.out.println("****************************************");
 		System.out.println("*********Descreet Guys Elevator*********");
 		System.out.println("****************************************");
 		System.out.println("-Welcome to the elevator");
 		System.out.println("-To continue, write the number of buildings: ");
 		int numOfBuildings = sc.nextInt();
-		sc.nextLine();		
+		sc.nextLine();	
+		return numOfBuildings;
+	}
+	
+	public static String menu2(Scanner sc) {
+		System.out.println("");
+		System.out.println("-Now, the building information.");
+		System.out.println("-To continue, write the building id, the amount of people, floors quantity "
+				+ "and offices quantity per floor. All in one line separated with space(id people floors offices.): ");
+		String info = sc.nextLine();
+		return info;
+	}
+	
+	public static String menu3(Scanner sc) {
+		System.out.println("");
+		System.out.println("-Now, the person information.");
+		System.out.println("-To continue, write the person's name, actual floor and the destity floor."
+				+ ". All in one line separated with space (name actualfloor destinyfloor): ");
+		String perInfo = sc.nextLine();
+		return perInfo;
 	}
 	
 	public static void create() {
-		String info = sc.nextLine();
+		String info = menu2(sc);
 		String[] infoArray = info.split(" ");
-		Building b = new Building(infoArray[0],Integer.parseInt(infoArray[1]),Integer.parseInt(infoArray[2]),Integer.parseInt(infoArray[3]));
+		Building b = new Building(infoArray[0],Integer.parseInt(infoArray[1]),
+				Integer.parseInt(infoArray[2]),Integer.parseInt(infoArray[3]));
 		for(int i=0;i<Integer.parseInt(infoArray[1]);i++) {
-			String perInfo = sc.nextLine();
+			String perInfo = menu3(sc);
 			String[] perSplit = perInfo.split(" ");
 			b.getPersons()[i]= new Person(perSplit[0],Integer.parseInt(perSplit[1]),Integer.parseInt(perSplit[2]));
 		}
